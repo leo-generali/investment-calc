@@ -5,7 +5,7 @@ class InitialInvestment extends Component {
     return (
       <input
         name="initialInvestment"
-        type="text"
+        type="number"
         placeholder="Initial Investment"
         value={this.props.initialInvestment}
         onChange={(e) => this.props.handleChange(e)}

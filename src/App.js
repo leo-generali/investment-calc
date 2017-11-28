@@ -7,6 +7,7 @@ import React, { Component } from 'react';
 // Components
 import InitialInvestment from './components/InitialInvestment';
 import InvestmentYears from './components/InvestmentYears';
+import Result from './components/Result';
 
 
 class App extends Component {
@@ -16,17 +17,34 @@ class App extends Component {
   }
 
   state = {
-    initialInvestment: "",
+    initialInvestment: 0,
     investmentYears: 0,
     yearlyInvestmentBalance: []
   }
 
+  calculateYearlyInvestments(data) {
+    console.log(data);
+    const initialInvestment = data.initialInvestment;
+    const investmentYears = data.investmentYears;
+    const yearlyInvestmentBalance = [];
+
+    for(let i = 0; i < investmentYears; i++) {
+      yearlyInvestmentBalance.push(initialInvestment);
+    }
+
+    return yearlyInvestmentBalance;
+  }
+
   handleChange(e) {
+    const info = this.state;
+    info[name] = value;
     const value = e.target.value;
     const name = e.target.name;
+    const yearlyInvestmentBalance = this.calculateYearlyInvestments(info);
 
     this.setState({
-      [name]: value
+      [name]: value,
+      yearlyInvestmentBalance
     });
   }
 
@@ -40,6 +58,9 @@ class App extends Component {
         <InvestmentYears
           investmentYears={this.state.investmentYears}
           handleChange={this.handleChange}
+        />
+        <Result
+          yearlyInvestmentBalance={this.yearlyInvestmentBalance}
         />
       </main>
     );
