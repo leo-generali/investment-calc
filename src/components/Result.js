@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { roundToHundreds } from '../helpers/math';
+
 class InvestmentYears extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +23,7 @@ class InvestmentYears extends Component {
 
     for (let i = 0; i <= investmentYears; i++) {
       const val = this.calculateCompoundInterest(initialInvestment, interestRate, i);
-      yearlyInvestmentValue.push(<p>{val}</p>);
+      yearlyInvestmentValue.push(<p key={i}>{val}</p>);
     }
 
     this.setState({ yearlyInvestmentValue });
@@ -30,7 +32,7 @@ class InvestmentYears extends Component {
   calculateCompoundInterest(principal, interestRate, time) {
     const calculatedInterestRate = (interestRate / 100) + 1;
     const value = Math.pow(calculatedInterestRate, time);
-    return value * principal;
+    return roundToHundreds(value * principal);
   }
 
   render() {
