@@ -8,7 +8,7 @@ class InitialInvestment extends Component {
         type="text"
         placeholder="Initial Investment"
         value={this.props.initialInvestment}
-        onChange={(e) => this.props.handleChange(e, 'initialInvestment')}
+        onChange={(e) => this.props.handleChange(e)}
       />
     );
   }

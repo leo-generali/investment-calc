@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 
 // Components
 import InitialInvestment from './components/InitialInvestment';
+import InvestmentYears from './components/InvestmentYears';
 
 
 class App extends Component {
@@ -15,7 +16,9 @@ class App extends Component {
   }
 
   state = {
-    initialInvestment: ""
+    initialInvestment: "",
+    investmentYears: 0,
+    yearlyInvestmentBalance: []
   }
 
   handleChange(e) {
@@ -34,9 +37,13 @@ class App extends Component {
           initialInvestment={this.state.initialInvestment}
           handleChange={this.handleChange}
         />
+        <InvestmentYears
+          investmentYears={this.state.investmentYears}
+          handleChange={this.handleChange}
+        />
       </main>
     );
-  }className="App"
+  }
 }
 
 export default App;
