@@ -21,8 +21,7 @@ class App extends Component {
   state = {
     initialInvestment: 0,
     investmentYears: 0,
-    interestRate: 0,
-    yearlyInvestmentBalance: []
+    interestRate: 0
   }
 
   handleChange(e) {
@@ -50,6 +49,7 @@ class App extends Component {
           handleChange={this.handleChange}
         />
         <Result
+          {...this.state}
         />
       </main>
     );
