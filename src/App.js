@@ -4,9 +4,11 @@ import React, { Component } from 'react';
 // import { colors, card } from '../styles/global';
 // import { StyleSheet, css } from 'aphrodite/no-important';
 
-// Components
-import InitialInvestment from './components/InitialInvestment';
-import InvestmentYears from './components/InvestmentYears';
+// Components 
+import InitialInvestmentInput from './components/inputs/InitialInvestmentInput';
+import InvestmentYearsInput from './components/inputs/InvestmentYearsInput';
+import InterestRateInput from './components/inputs/InterestRateInput';
+
 import Result from './components/Result';
 
 
@@ -19,48 +21,35 @@ class App extends Component {
   state = {
     initialInvestment: 0,
     investmentYears: 0,
+    interestRate: 0,
     yearlyInvestmentBalance: []
   }
 
-  calculateYearlyInvestments(data) {
-    console.log(data);
-    const initialInvestment = data.initialInvestment;
-    const investmentYears = data.investmentYears;
-    const yearlyInvestmentBalance = [];
-
-    for(let i = 0; i < investmentYears; i++) {
-      yearlyInvestmentBalance.push(initialInvestment);
-    }
-
-    return yearlyInvestmentBalance;
-  }
-
   handleChange(e) {
-    const info = this.state;
-    info[name] = value;
     const value = e.target.value;
     const name = e.target.name;
-    const yearlyInvestmentBalance = this.calculateYearlyInvestments(info);
 
     this.setState({
-      [name]: value,
-      yearlyInvestmentBalance
+      [name]: value
     });
   }
 
   render() {
     return (
       <main>
-        <InitialInvestment
+        <InitialInvestmentInput
           initialInvestment={this.state.initialInvestment}
           handleChange={this.handleChange}
         />
-        <InvestmentYears
+        <InvestmentYearsInput
           investmentYears={this.state.investmentYears}
           handleChange={this.handleChange}
         />
+        <InterestRateInput
+          interestRate={this.state.interestRate}
+          handleChange={this.handleChange}
+        />
         <Result
-          yearlyInvestmentBalance={this.yearlyInvestmentBalance}
         />
       </main>
     );

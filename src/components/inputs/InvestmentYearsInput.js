@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class InvestmentYears extends Component {
+class InvestmentYearsInput extends Component {
   render() {
     return(
       <input
@@ -14,4 +14,4 @@ class InvestmentYears extends Component {
   }
 }
 
-export default InvestmentYears;
+export default InvestmentYearsInput;
