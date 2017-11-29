@@ -12,27 +12,35 @@ class InvestmentYears extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.calculateYearlyValue(nextProps);
+    this.calculateYearlyValues(nextProps);
   }
 
-  calculateYearlyValue(nextProps) {
-    const initialInvestment = nextProps.initialInvestment;
-    const investmentYears = nextProps.investmentYears;
-    const interestRate = nextProps.interestRate;
+  calculateYearlyValues(nextProps) {
     const yearlyInvestmentValue = [];
 
-    for (let i = 0; i <= investmentYears; i++) {
-      const val = this.calculateCompoundInterest(initialInvestment, interestRate, i);
+    for (let i = 0; i <= nextProps.investmentYears; i++) {
+      const val = this.calculateYearlyValue(nextProps, i);
       yearlyInvestmentValue.push(val);
     }
 
     this.setState({ yearlyInvestmentValue });
   }
 
-  calculateCompoundInterest(principal, interestRate, time) {
-    const calculatedInterestRate = (interestRate / 100) + 1;
-    const value = Math.pow(calculatedInterestRate, time);
-    return roundToHundreds(value * principal);
+  calculateYearlyValue(data, year) {
+    const futureValuePrincipal = this.calculatePrincipalFutureValue(data.initialInvestment, calculatedInterestRate, year);
+    const futureValueInterest = this.calculateInterestFutureValue(data.initialInvestment, calculatedInterestRate, year);
+    const totalValue = futureValuePrincipal + futureValueInterest;
+    return roundToHundreds(futureValuePrincipal);
+  }
+
+  calculatePrincipalFutureValue(principal, interestRate, year) {
+    // FV = PV(1 + r/m)mt
+    const value = Math.pow(interestRate, year) ;
+    return value * principal;
+  }
+
+  
+  calculateInterestFutureValue(principal, interestRate, year) {
   }
 
   render() {

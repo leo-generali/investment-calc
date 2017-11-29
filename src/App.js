@@ -31,7 +31,7 @@ class App extends Component {
     const name = e.target.name;
 
     this.setState({
-      [name]: value
+      [name]: parseInt(value, 10)
     });
   }
 
