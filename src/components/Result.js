@@ -23,7 +23,7 @@ class InvestmentYears extends Component {
 
     for (let i = 0; i <= investmentYears; i++) {
       const val = this.calculateCompoundInterest(initialInvestment, interestRate, i);
-      yearlyInvestmentValue.push(<p key={i}>{val}</p>);
+      yearlyInvestmentValue.push(val);
     }
 
     this.setState({ yearlyInvestmentValue });
@@ -36,11 +36,11 @@ class InvestmentYears extends Component {
   }
 
   render() {
+    const nums = this.state.yearlyInvestmentValue.map((elem, i) => <p key={i}>{elem}</p>)
+
     return (
       <div>
-        {
-          this.state.yearlyInvestmentValue
-        }
+        { nums }
       </div>
     );
   }

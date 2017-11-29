@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import InitialInvestmentInput from './components/inputs/InitialInvestmentInput';
 import InvestmentYearsInput from './components/inputs/InvestmentYearsInput';
 import InterestRateInput from './components/inputs/InterestRateInput';
+import ContributionInput from './components/inputs/ContributionInput';
 
 import Result from './components/Result';
 
@@ -19,9 +20,10 @@ class App extends Component {
   }
 
   state = {
-    initialInvestment: 0,
-    investmentYears: 0,
-    interestRate: 0
+    initialInvestment: 10,
+    investmentYears: 10,
+    interestRate: 10,
+    contribution: 10
   }
 
   handleChange(e) {
@@ -46,6 +48,10 @@ class App extends Component {
         />
         <InterestRateInput
           interestRate={this.state.interestRate}
+          handleChange={this.handleChange}
+        />
+        <ContributionInput
+          contribution={this.state.contribution}
           handleChange={this.handleChange}
         />
         <Result
