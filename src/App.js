@@ -21,10 +21,17 @@ class App extends Component {
   }
 
   state = {
+<<<<<<< HEAD
     initialInvestment: 0,
     investmentYears: 0,
     interestRate: 0,
     contribution: 0
+=======
+    initialInvestment: 10,
+    investmentYears: 10,
+    interestRate: 10,
+    contribution: 10
+>>>>>>> bd0df5ca035a4b04495bd161ebdaf9d603ce312b
   }
 
   handleChange(e) {
@@ -32,7 +39,7 @@ class App extends Component {
     const name = e.target.name;
 
     this.setState({
-      [name]: value
+      [name]: parseInt(value, 10)
     });
   }
 

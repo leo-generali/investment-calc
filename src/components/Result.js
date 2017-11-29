@@ -12,6 +12,7 @@ class Result extends Component {
     yearlyInvestmentValues: []
   }
   componentWillReceiveProps(nextProps) {
+<<<<<<< HEAD
     this.calculateTotalInvestmentValue(nextProps);
   }
 
@@ -21,6 +22,17 @@ class Result extends Component {
     for (let i = 0; i <= nextProps.investmentYears; i++) {
       let val = this.calculateYearlyValue(nextProps, i);
       yearlyInvestmentValues.push(<p key={i}>{val}</p>);
+=======
+    this.calculateYearlyValues(nextProps);
+  }
+
+  calculateYearlyValues(nextProps) {
+    const yearlyInvestmentValue = [];
+
+    for (let i = 0; i <= nextProps.investmentYears; i++) {
+      const val = this.calculateYearlyValue(nextProps, i);
+      yearlyInvestmentValue.push(val);
+>>>>>>> bd0df5ca035a4b04495bd161ebdaf9d603ce312b
     }
 
     this.setState({ yearlyInvestmentValues });
@@ -38,16 +50,33 @@ class Result extends Component {
     return roundToHundreds(principal * interestRate);
   }
 
-  calculateCompoundInterest(principal, interestRate, time) {
-    const calculatedInterestRate = (interestRate / 100) + 1;
-    const value = Math.pow(calculatedInterestRate, time);
-    return roundToHundreds(value * principal);
+  calculateYearlyValue(data, year) {
+    const futureValuePrincipal = this.calculatePrincipalFutureValue(data.initialInvestment, calculatedInterestRate, year);
+    const futureValueInterest = this.calculateInterestFutureValue(data.initialInvestment, calculatedInterestRate, year);
+    const totalValue = futureValuePrincipal + futureValueInterest;
+    return roundToHundreds(futureValuePrincipal);
+  }
+
+  calculatePrincipalFutureValue(principal, interestRate, year) {
+    // FV = PV(1 + r/m)mt
+    const value = Math.pow(interestRate, year) ;
+    return value * principal;
+  }
+
+  
+  calculateInterestFutureValue(principal, interestRate, year) {
   }
 
   render() {
+    const nums = this.state.yearlyInvestmentValue.map((elem, i) => <p key={i}>{elem}</p>)
+
     return (
       <div>
+<<<<<<< HEAD
         { this.state.yearlyInvestmentValues }
+=======
+        { nums }
+>>>>>>> bd0df5ca035a4b04495bd161ebdaf9d603ce312b
       </div>
     );
   }
