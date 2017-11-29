@@ -4,11 +4,7 @@ class InitialInvestmentInput extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        Initial Investment
-=======
         Initial Investment:         
->>>>>>> bd0df5ca035a4b04495bd161ebdaf9d603ce312b
         <input
           name="initialInvestment"
           type="number"
