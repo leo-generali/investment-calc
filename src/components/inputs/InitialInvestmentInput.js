@@ -4,7 +4,7 @@ class InitialInvestmentInput extends Component {
   render() {
     return (
       <div>
-        Initial Investment:         
+        Initial Investment:
         <input
           name="initialInvestment"
           type="number"

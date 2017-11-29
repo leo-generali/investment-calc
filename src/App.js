@@ -9,6 +9,7 @@ import InitialInvestmentInput from './components/inputs/InitialInvestmentInput';
 import InvestmentYearsInput from './components/inputs/InvestmentYearsInput';
 import InterestRateInput from './components/inputs/InterestRateInput';
 import ContributionInput from './components/inputs/ContributionInput';
+import ContributionIncreaseInput from './components/inputs/ContributionIncreaseInput';
 
 // Result
 import Result from './components/Result';
@@ -24,7 +25,8 @@ class App extends Component {
     initialInvestment: 10,
     investmentYears: 10,
     interestRate: 10,
-    contribution: 10
+    contribution: 10,
+    contributionIncrease: 10
   }
 
   handleChange(e) {
@@ -53,6 +55,10 @@ class App extends Component {
         />
         <ContributionInput
           contribution={this.state.contribution}
+          handleChange={this.handleChange}
+        />
+        <ContributionIncreaseInput
+          contribution={this.state.contributionIncrease}
           handleChange={this.handleChange}
         />
         <Result
