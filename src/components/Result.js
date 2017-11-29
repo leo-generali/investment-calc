@@ -3,34 +3,36 @@ import React, { Component } from 'react';
 import { roundToHundreds } from '../helpers/math';
 
 class Result extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
   state = {
-    yearlyTotalBalance: []
+    yearlyTotalBalance: [],
+    yearlyPrincipalValue: [],
+    yearlyInterestValue: [],
   }
   componentWillReceiveProps(nextProps) {
     this.calculateYearlyValues(nextProps);
   }
 
   calculateYearlyValues(nextProps) {
-    const yearlyTotalBalance = [];
+    const yearlyTotalBalance = [],
+          yearlyPrincipalValue = [],
+          yearlyInterestValue = [];
+    const calculatedInterestRate = (nextProps.interestRate / 100);
 
     for (let i = 0; i <= nextProps.investmentYears; i++) {
-      const val = this.calculateYearlyValue(nextProps, i);
-      yearlyTotalBalance.push(val);
+      const balVal = this.calculateYearlyValue(nextProps, i);
+      const principalVal = this.calculatePrincipalFutureValue(nextProps.initialInvestment, calculatedInterestRate, i);
+      const interestVal = this.calculateFutureValue(nextProps.contribution, calculatedInterestRate, i)
+      yearlyTotalBalance.push(balVal);
+      yearlyPrincipalValue.push(principalVal);
+      yearlyInterestValue.push(interestVal);
     }
 
-    this.setState({ yearlyTotalBalance });
+    this.setState({
+      yearlyTotalBalance,
+      yearlyPrincipalValue,
+      yearlyInterestValue
+    });
   }
-
-  // calculateYearlyValue(data, year) {
-  //   let yearlyValue = 0;
-  //   yearlyValue += data.contribution * year;
-  //   return yearlyValue;
-  // }
 
   calculateYearlyValue(data, year) {
     const calculatedInterestRate = (data.interestRate / 100);
@@ -41,16 +43,17 @@ class Result extends Component {
   }
 
   calculatePrincipalFutureValue(principal, interestRate, year) {
+    const yearlyPrincipalValue = [];
     const value = Math.pow(interestRate + 1, year);
-    return value * principal;
+    return roundToHundreds(value * principal);
   }
 
   calculateFutureValue(contribution, interestRate, year) {
-    const periods = 12;
-    let x = (Math.pow(1 + interestRate, year) - 1);
-    let y = x / interestRate;
-    let val = contribution * y;
-    return val;
+    // const periods = 12;
+    const x = (Math.pow(1 + interestRate, year) - 1);
+    const y = x / interestRate;
+    const val = contribution * y;
+    return roundToHundreds(val);
   }
 
   render() {
