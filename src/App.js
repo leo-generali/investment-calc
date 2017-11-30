@@ -12,7 +12,7 @@ import ContributionInput from './components/inputs/ContributionInput';
 import ContributionIncreaseInput from './components/inputs/ContributionIncreaseInput';
 
 // Result
-import Result from './components/Result';
+import Result from './components/result/Result';
 
 
 class App extends Component {

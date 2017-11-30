@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Chart from './Chart';
 
-import { roundToHundreds } from '../helpers/math';
+import { roundToHundreds } from '../../helpers/math';
 
 class Result extends Component {
   state = {
@@ -8,6 +9,7 @@ class Result extends Component {
     yearlyPrincipalValue: [],
     yearlyInterestValue: [],
   }
+
   componentWillReceiveProps(nextProps) {
     this.calculateYearlyValues(nextProps);
   }
@@ -43,7 +45,6 @@ class Result extends Component {
   }
 
   calculatePrincipalFutureValue(principal, interestRate, year) {
-    const yearlyPrincipalValue = [];
     const value = Math.pow(interestRate + 1, year);
     return roundToHundreds(value * principal);
   }
@@ -61,6 +62,9 @@ class Result extends Component {
 
     return (
       <div>
+        <Chart
+          yearlyTotalBalance={this.state.yearlyTotalBalance}
+        />
         { nums }
       </div>
     );
